@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { Client, GatewayIntentBits, EmbedsBuilder } = require("discord.js");
+const { Client, GatewayIntentBits, EmbedBuilder } = require("discord.js");
 const axios = require("axios");
 
 // env config
@@ -48,7 +48,7 @@ async function checkForNewCommits() {
       const channel = client.channels.cache.get(DISCORD_CHANNEL_ID);
 
       if (channel) {
-        const embed = new EmbedsBuilder()
+        const embed = new EmbedBuilder()
           .setTitle(`New Commmit on GitHub repository ${GITHUB_REPO}`)
           .setDescription(latestCommit.commit.message)
           .setColor(0x0099ff)
