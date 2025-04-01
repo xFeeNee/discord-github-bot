@@ -97,8 +97,8 @@ client.once("ready", () => {
   // check commits just after run
   checkForNewCommits();
 
-  // check for new commits every 5 minutes
-  setInterval(checkForNewCommits, 5 * 60 * 1000);
+  // check for new commits every 30 seconds
+  setInterval(checkForNewCommits, 30 * 1000);
 });
 
 // login bot
