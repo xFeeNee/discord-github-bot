@@ -18,11 +18,15 @@ const client = new Client({
 async function checkForNewCommits() {
   try {
     // Fetch the latest commit from the GitHub API
+    console.log(
+      `Próba pobrania commitów z: https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/commits`
+    );
+
     const response = await axios.get(
-      "https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/commits",
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/commits`,
       {
         headers: {
-          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+          Authorization: `token ${process.env.GITHUB_TOKEN}`,
         },
       }
     );
@@ -41,11 +45,11 @@ async function checkForNewCommits() {
       console.log("New commit found");
 
       // Send a message to the Discord channel
-      const channel = client.channels.cache.get(process.env.DISCORD_CHANNEL_ID);
+      const channel = client.channels.cache.get(DISCORD_CHANNEL_ID);
 
       if (channel) {
         const embed = new EmbedsBuilder()
-          .setTitle("New Commmit on GitHub repository ${GITHUB_REPO}")
+          .setTitle(`New Commmit on GitHub repository ${GITHUB_REPO}`)
           .setDescription(latestCommit.commit.message)
           .setColor(0x0099ff)
           .addFields(
@@ -73,7 +77,7 @@ async function checkForNewCommits() {
         console.log("Message sent to Discord channel");
       }
 
-      lastCommitSHA = latestComimt.sha;
+      lastCommitSHA = latestCommit.sha;
     }
   } catch (error) {
     console.error("Error fetching commits:", error.message);
@@ -87,6 +91,8 @@ async function checkForNewCommits() {
 // Check if bot is ready
 client.once("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
+
+  //test if bot sending messages
 
   // check commits just after run
   checkForNewCommits();
