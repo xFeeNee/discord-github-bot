@@ -92,8 +92,6 @@ async function checkForNewCommits() {
 client.once("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
 
-  //test if bot sending messages
-
   // check commits just after run
   checkForNewCommits();
 
