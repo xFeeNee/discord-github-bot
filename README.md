@@ -17,7 +17,7 @@
    ```
 2. **Install dependencies:**
    ```sh
-   cd GitHubCommitNotifier
+   cd discord-github-bot
    npm install
    ```
 3. **Configure the bot:**
