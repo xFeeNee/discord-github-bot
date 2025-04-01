@@ -104,3 +104,5 @@ client.once("ready", () => {
 // login bot
 
 client.login(process.env.DISCORD_TOKEN);
+
+//TESTING
