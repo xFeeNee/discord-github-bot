@@ -65,7 +65,7 @@ async function checkForNewCommits() {
             },
             {
               name: "Repository",
-              value: "${GITHUB_OWNER}/${GITHUB_REPO}",
+              value: `${GITHUB_OWNER}/${GITHUB_REPO}`,
               inline: true,
             }
           )
